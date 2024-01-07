@@ -1,0 +1,40 @@
+CREATE KEYSPACE IF NOT EXISTS bda_project
+WITH replication = {'class': 'SimpleStrategy', 'replication_factor': 1};
+
+USE bda_project;
+
+CREATE TABLE IF NOT EXISTS bda_project.predictions (
+    timestamp TIMESTAMP,
+    id TEXT,
+    lat_start DOUBLE,
+    lon_start DOUBLE,
+    lineLabel INT,
+    time INT,
+    temp_c DOUBLE,
+    wind_kph DOUBLE,
+    pressure_in DOUBLE,
+    humidity INT,
+    cloud INT,
+    vis_km DOUBLE,
+    hour INT,
+    minute INT,
+    lat_end DOUBLE,
+    lon_end DOUBLE,
+    prediction DOUBLE,
+    PRIMARY KEY (timestamp, id)  -- Adjust the primary key based on your query patterns
+);
+
+CREATE TABLE IF NOT EXISTS bda_project.model_results (
+    timestamp TIMESTAMP,
+    observations INT,
+    difference_avg DOUBLE,
+    PRIMARY KEY (timestamp)  -- Adjust the primary key based on your query patterns
+);
+
+CREATE TABLE IF NOT EXISTS bda_project.stops (
+    id INT,
+    name TEXT,
+    lat DOUBLE,
+    lon DOUBLE,
+    PRIMARY KEY (id)  -- Adjust the primary key based on your query patterns
+);
