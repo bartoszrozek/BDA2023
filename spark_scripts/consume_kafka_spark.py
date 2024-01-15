@@ -129,3 +129,4 @@ query = predicted_df.writeStream \
     .foreachBatch(write_to_cassandra) \
     .start()
 
+query.awaitTermination()
